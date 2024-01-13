@@ -7,14 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class secondactivity extends AppCompatActivity  implements View.OnClickListener{
-    Button b1 ;
+public class GreatActivity extends AppCompatActivity  implements View.OnClickListener {
+    Button b2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_secondactivity);
-        b1 = (Button) findViewById(R.id.button2);
-        b1.setOnClickListener(this);
+        setContentView(R.layout.activity_great);
+        b2 = (Button) findViewById(R.id.button2);
+        b2.setOnClickListener(this);
     }
 
     @Override
@@ -22,7 +23,7 @@ public class secondactivity extends AppCompatActivity  implements View.OnClickLi
         if (view.getId() == R.id.button2) {
 
 
-            Intent i1 = new Intent(this, SupportActivity.class);
+            Intent i1 = new Intent(this, loginactivi.class);
             startActivity(i1);
         }
     }
