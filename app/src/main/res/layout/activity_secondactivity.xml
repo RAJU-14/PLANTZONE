@@ -11,7 +11,7 @@
         android:id="@+id/login3"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:src="@drawable/login2"/>
+        android:src="@drawable/login2" />
 
 
     <Button
