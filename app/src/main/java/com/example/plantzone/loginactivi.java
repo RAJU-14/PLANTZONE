@@ -26,7 +26,6 @@ public class loginactivi extends AppCompatActivity implements View.OnClickListen
 
 
             Intent i1 = new Intent(this, Register.class);
-            Toast.makeText(this, "Login  Successfully", Toast.LENGTH_LONG).show();
             startActivity(i1);
         }
         if (view.getId() == R.id.button2) {
@@ -35,5 +34,6 @@ public class loginactivi extends AppCompatActivity implements View.OnClickListen
             Intent i1 = new Intent(this, Dashboardactivity.class);
             Toast.makeText(this, "Login  Successfully", Toast.LENGTH_LONG).show();
             startActivity(i1);
+        }
     }
 }
