@@ -35,5 +35,5 @@ public class loginactivi extends AppCompatActivity implements View.OnClickListen
             Toast.makeText(this, "Login  Successfully", Toast.LENGTH_LONG).show();
             startActivity(i1);
         }
+        }
     }
-}
