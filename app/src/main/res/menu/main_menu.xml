@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="home"/>
+        <item
+            android:id="@+id/nav_search"
+            android:title="search"/>
+        <item
+            android:id="@+id/nav_categories"
+            android:title="categories"/>
+        <item
+            android:id="@+id/nav_"
+            android:title="home"/>
+
+
+
+
+    </group>
+
+<item android:title="profile">
+    <menu>
+        <group
+            android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_login"
+                android:title="home"/>
+            <item
+                android:id="@+id/nav_profile"
+                android:title="search"/>
+            <item
+                android:id="@+id/nav_logout"
+                android:title="categories"/>
+
+
+
+
+
+        </group>
+
+    </menu>
+</item>
+
+    <item android:title="categories">
+        <menu>
+            <group
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_sample1"
+                    android:title="home"/>
+                <item
+                    android:id="@+id/nav_sample2"
+                    android:title="search"/>
+                <item
+                    android:id="@+id/nav_sample3"
+                    android:title="categories"/>
+
+
+
+
+
+            </group>
+
+        </menu>
+    </item>
+
+    <item android:title="share">
+        <menu>
+            <group
+                android:checkableBehavior="none">
+                <item
+                    android:id="@+id/nav_share"
+                    android:title="share"/>
+                <item
+                    android:id="@+id/nav_rate_us"
+                    android:title="rate_us"/>
+
+            </group>
+
+        </menu>
+    </item>
+
+
+</menu>

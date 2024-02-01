@@ -9,6 +9,8 @@
     tools:context=".loginactivi"
     android:padding="20dp">
 
+
+
     <ImageView
         android:id="@+id/login3"
         android:layout_width="160dp"
@@ -111,6 +113,10 @@
             android:textColor="@color/black"
             android:layout_gravity="right"
             android:elevation="0dp"/>
+
+
+
+        
 
     </LinearLayout>
 
