@@ -45,20 +45,20 @@
         android:orientation="vertical">
 
 
-       <com.google.android.material.textfield.TextInputLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:id="@+id/user"
-           android:hint="Username"
-           android:textColorHint="@color/black"
-           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-
-
-
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/user"
+            android:hint="Username"
+            android:textColorHint="@color/black"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,26 +81,26 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-<Button
-    android:id="@+id/button1"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
-    android:backgroundTint="#295737"
-    android:text="FORGET PASSWORD"
-    android:textStyle="bold"
-    android:textColor="@color/white"
-    android:layout_gravity="right"
-    android:elevation="0dp"/>
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#295737"
+            android:text="FORGET PASSWORD"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="right"
+            android:elevation="0dp"/>
 
         <Button
             android:id="@+id/button2"
 
             android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="LOGIN"
-    android:backgroundTint="#6D9773"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"/>
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:backgroundTint="#6D9773"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
         <Button
 
@@ -116,7 +116,7 @@
 
 
 
-        
+
 
     </LinearLayout>
 
