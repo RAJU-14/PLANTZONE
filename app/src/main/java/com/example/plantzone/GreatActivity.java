@@ -23,7 +23,7 @@ public class GreatActivity extends AppCompatActivity  implements View.OnClickLis
         if (view.getId() == R.id.button2) {
 
 
-            Intent i1 = new Intent(this, loginactivi.class);
+            Intent i1 = new Intent(this, LoginActivity.class);
             startActivity(i1);
         }
     }
