@@ -97,7 +97,7 @@
                     <RelativeLayout
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:background="@color/black"
+                        android:background="@drawable/crop"
                         android:elevation="8dp"
                         android:layout_margin="10dp">
 
