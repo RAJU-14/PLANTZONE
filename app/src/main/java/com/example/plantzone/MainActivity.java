@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(i);
                 finish();
             }
-        }, 1000);
+        }, 3000);
 
     }
 

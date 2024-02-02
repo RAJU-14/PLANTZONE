@@ -1,23 +1,13 @@
 {
   "project_info": {
-<<<<<<< HEAD
     "project_number": "558159521764",
     "project_id": "plantzone-11872",
     "storage_bucket": "plantzone-11872.appspot.com"
-=======
-    "project_number": "173260441047",
-    "project_id": "plantzone-805d4",
-    "storage_bucket": "plantzone-805d4.appspot.com"
->>>>>>> origin/master
   },
   "client": [
     {
       "client_info": {
-<<<<<<< HEAD
         "mobilesdk_app_id": "1:558159521764:android:1b3dd886bc3571362609f1",
-=======
-        "mobilesdk_app_id": "1:173260441047:android:fc7929173e3ffeaea4b792",
->>>>>>> origin/master
         "android_client_info": {
           "package_name": "com.example.plantzone"
         }
@@ -25,11 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-<<<<<<< HEAD
           "current_key": "AIzaSyC1pljsjwk28ujRB2JaOcKAuBcZGSmzNxY"
-=======
-          "current_key": "AIzaSyBhPaxe9PuEytfp8X0TSIrEo6E_aZ2Ga-Y"
->>>>>>> origin/master
         }
       ],
       "services": {
