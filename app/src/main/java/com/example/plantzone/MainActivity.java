@@ -10,7 +10,7 @@ import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Handler handler;
-    Button b1 ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
