@@ -54,32 +54,29 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@color/white"
                     android:layout_marginLeft="40dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginRight="40dp"
-                    android:elevation="40dp"
-                    android:layout_marginTop="40dp">
+                    android:background="@color/white"
+                    android:elevation="40dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Search"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="15dp"
-                        />
+                        android:text="Search" />
+
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
-                        android:src="@drawable/baseline_search_24"/>
-
+                        android:src="@drawable/baseline_search_24" />
 
 
                 </RelativeLayout>
-
-
 
 
             </RelativeLayout>

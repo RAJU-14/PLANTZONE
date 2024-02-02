@@ -23,9 +23,6 @@ public class Register extends AppCompatActivity  implements View.OnClickListener
         b2 = (Button) findViewById(R.id.button2);
         b2.setOnClickListener(this);
 
-
-
-
     }
 
     @Override
