@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="green">#FBFFFB</color>
+    <color name="defaultBgColor">#2AE6E7E7</color>
 </resources>

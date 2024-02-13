@@ -21,13 +21,14 @@
 
         android:text="Feedback"
         android:textColor="#295737"
-        android:textSize="60sp"/>
+        android:textSize="58dp"/>
 
     <TextView
         android:id="@+id/text2"
+        android:layout_marginTop="9dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign In To Continue"
+        android:text="We would Like your feedback to improve our App"
         android:textSize="20sp"
         android:textStyle="bold"/>
 
@@ -36,7 +37,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="75dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
@@ -63,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/pass"
+            android:layout_marginTop="20dp"
             android:hint="GIVE YOUR FEEDBACK"
             android:background="#546A6A6A"
             android:textColorHint="@color/black"
@@ -84,8 +86,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SUBMIT"
-            android:backgroundTint="#6D9773"
-            android:layout_marginTop="50dp"
+            android:layout_marginLeft="250dp"
+            android:backgroundTint="#295737"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="10dp"/>
 
 

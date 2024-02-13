@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/dashboard"
+    android:orientation="vertical"
     tools:context=".Dashboardactivity">
 
     <RelativeLayout
@@ -16,25 +16,25 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:fontFamily="@font/acne"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/acne"
+            android:text="@string/app_name"
             android:textColor="#11642A"
-            android:text="@string/app_name"/>
+            android:textSize="28sp" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/baseline_menu_24"
-            android:layout_centerVertical="true"/>
-        
+            android:layout_centerVertical="true"
+            android:src="@drawable/baseline_menu_24" />
+
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/dashboard_add"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:layout_alignParentRight="true"/>
+            android:src="@drawable/dashboard_add" />
 
     </RelativeLayout>
 
@@ -50,9 +50,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-
-
 
 
             </RelativeLayout>
@@ -71,14 +68,14 @@
                     <RelativeLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:elevation="8dp"
-                        android:layout_margin="10dp">
+                        android:layout_margin="10dp"
+                        android:elevation="8dp">
 
                         <ImageView
                             android:id="@+id/imgbtn1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/plant"/>
+                            android:src="@drawable/plant" />
 
 
                     </RelativeLayout>
@@ -88,8 +85,8 @@
                         android:layout_height="63dp"
                         android:gravity="center_horizontal"
                         android:text="Plant Disease Detection"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -103,14 +100,14 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
 
-                        android:elevation="8dp"
-                        android:layout_margin="10dp">
+                        android:layout_margin="10dp"
+                        android:elevation="8dp">
 
                         <ImageView
                             android:id="@+id/imgbtn2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/crop"/>
+                            android:src="@drawable/crop" />
 
 
                     </RelativeLayout>
@@ -120,8 +117,8 @@
                         android:layout_height="63dp"
                         android:gravity="center_horizontal"
                         android:text="Crop Information"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -141,7 +138,7 @@
                             android:id="@+id/imgbtn3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/community"/>
+                            android:src="@drawable/community" />
 
                     </RelativeLayout>
 
@@ -150,8 +147,8 @@
                         android:layout_height="62dp"
                         android:gravity="center_horizontal"
                         android:text="Community"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -164,14 +161,14 @@
                     <RelativeLayout
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:elevation="8dp"
-                        android:layout_margin="10dp">
+                        android:layout_margin="10dp"
+                        android:elevation="8dp">
 
                         <ImageView
                             android:id="@+id/imgbtn4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/feedback"/>
+                            android:src="@drawable/feedback" />
 
 
                     </RelativeLayout>
@@ -181,8 +178,8 @@
                         android:layout_height="63dp"
                         android:gravity="center_horizontal"
                         android:text="Feedback"
-                        android:textStyle="bold"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -206,10 +203,10 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_height="300dp"
                     android:layout_width="280dp"
+                    android:layout_height="300dp"
                     android:layout_toRightOf="@+id/featured_background"
-                    android:background="@color/black"/>
+                    android:background="@color/black" />
 
             </RelativeLayout>
 
@@ -226,27 +223,25 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Most Viewed"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
                         android:fontFamily="@font/acne"
-                        android:textAllCaps="true"/>
+                        android:text="Most Viewed"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="View All"
-                        android:textColor="@color/black"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"/>
+                        android:layout_centerVertical="true"
+                        android:text="View All"
+                        android:textColor="@color/black" />
 
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"/>
-
-
+                    android:layout_height="100dp" />
 
 
             </LinearLayout>
@@ -264,27 +259,25 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Categories"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
                         android:fontFamily="@font/acne"
-                        android:textAllCaps="true"/>
+                        android:text="Categories"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="View All"
-                        android:textColor="@color/black"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"/>
+                        android:layout_centerVertical="true"
+                        android:text="View All"
+                        android:textColor="@color/black" />
 
                 </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"/>
-
-
+                    android:layout_height="100dp" />
 
 
             </LinearLayout>
@@ -292,7 +285,6 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </LinearLayout>
