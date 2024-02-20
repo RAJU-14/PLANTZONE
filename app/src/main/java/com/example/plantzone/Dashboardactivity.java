@@ -45,7 +45,7 @@ public class Dashboardactivity extends AppCompatActivity implements View.OnClick
             startActivity(i);
         }
         if (view.getId() == R.id.imgbtn3) {
-            Intent i = new Intent(this, Communityactivity.class);
+            Intent i = new Intent(this, CommunityActivity.class);
             startActivity(i);
         }
     }
