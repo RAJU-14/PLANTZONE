@@ -197,7 +197,7 @@
                     android:id="@+id/featured_background"
                     android:layout_width="170dp"
                     android:layout_height="300dp"
-                    android:background="#6D9773"
+                    android:background="@drawable/image2"
                     android:orientation="vertical">
 
                 </LinearLayout>

@@ -8,6 +8,7 @@
     <color name="classic_colorTintedBackground">#cdcdcd</color>
         <color name="colorPrimary">#044b43</color>
         <color name="colorPrimaryDark">#044b43</color>
+        <color name="colorPrimaryDark2">#295737</color>
         <color name="colorAccent">#03162D</color>
         <color name="colorBackground">#c7ecff</color>
         <color name="defaultColor">#8da1b2</color>

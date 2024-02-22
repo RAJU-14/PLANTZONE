@@ -6,11 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/feedback2"
     android:orientation="vertical"
-    tools:context=".LoginActivity"
-    android:padding="20dp">
-
-
-
+    android:padding="20dp"
+    tools:context=".FeedbackActivity">
 
     <TextView
         android:id="@+id/text1"
@@ -18,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/acne"
-
         android:text="Feedback"
         android:textColor="#295737"
         android:textSize="58dp"/>
@@ -45,7 +41,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/user"
+
             android:hint="ENTER YOUR NAME"
             android:background="#546A6A6A"
             android:textColorHint="@color/black"
@@ -56,6 +52,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/userEditText"
                 android:layout_height="match_parent"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -63,7 +60,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/pass"
             android:layout_marginTop="20dp"
             android:hint="GIVE YOUR FEEDBACK"
             android:background="#546A6A6A"
@@ -74,6 +70,7 @@
 
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/feedbackEditText"
                 android:layout_width="match_parent"
                 android:layout_height="120dp" />
 
@@ -90,10 +87,6 @@
             android:backgroundTint="#295737"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="10dp"/>
-
-
-
-
 
 
     </LinearLayout>
