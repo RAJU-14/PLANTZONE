@@ -95,7 +95,15 @@ public class DBHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-
+    public boolean addPost(String description, String imageUri) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBContract.PostEntry.COLUMN_DESCRIPTION, description);
+        values.put(DBContract.PostEntry.COLUMN_IMAGE_URI, imageUri);
+        long result = db.insert(DBContract.PostEntry.TABLE_NAME, null, values);
+        db.close();
+        return result != -1;
+    }
     // Your existing methods for user-related operations...
 
     // Insert user data into the Users table
@@ -141,5 +149,6 @@ public class DBHelper extends SQLiteOpenHelper {
             Log.e("DBHelper", "Error checking user password: " + e.getMessage());
             return false;
         }
+
     }
 }

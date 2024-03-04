@@ -50,5 +50,9 @@ public class Dashboardactivity extends AppCompatActivity implements View.OnClick
             Intent i = new Intent(this, CommunityActivity.class);
             startActivity(i);
         }
+        if (view.getId() == R.id.imgbtn2) {
+            Intent i = new Intent(this, Cropdetails.class);
+            startActivity(i);
+        }
     }
 }

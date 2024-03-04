@@ -56,11 +56,18 @@ public class CommunityActivity extends AppCompatActivity {
             }
         });
 
+        EditText editTextDescription = findViewById(R.id.editTextDescription);
+
         Button buttonUploadFromGallery = findViewById(R.id.buttonUploadFromGallery);
         buttonUploadFromGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGallery();
+                String description = editTextDescription.getText().toString();
+                if (!description.isEmpty()) {
+                    openGallery();
+                } else {
+                    Toast.makeText(CommunityActivity.this, "Please enter a description", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -102,17 +109,14 @@ public class CommunityActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri imageUri = data.getData();
-            // Add the post with imageUri to the database
             addPostToDatabase(imageUri);
         }
     }
 
     private void addPostToDatabase(Uri imageUri) {
-        // Get the description from user input
         EditText editTextDescription = findViewById(R.id.editTextDescription);
         String description = editTextDescription.getText().toString();
 
-        // Add the post to the database
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DBContract.PostEntry.COLUMN_DESCRIPTION, description);
@@ -120,12 +124,10 @@ public class CommunityActivity extends AppCompatActivity {
         long newRowId = db.insert(DBContract.PostEntry.TABLE_NAME, null, values);
 
         if (newRowId != -1) {
-            // If the row ID is valid, add the post to the list and notify the adapter
             postList.add(new Post((int) newRowId, description, imageUri));
             postAdapter.notifyItemInserted(postList.size() - 1);
             Toast.makeText(this, "Post added successfully", Toast.LENGTH_SHORT).show();
         } else {
-            // Otherwise, show an error message
             Toast.makeText(this, "Error adding post", Toast.LENGTH_SHORT).show();
         }
         db.close();

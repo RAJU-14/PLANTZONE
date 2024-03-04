@@ -10,7 +10,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
+        android:background="@drawable/dash1"
         android:padding="15dp">
 
         <TextView
@@ -18,22 +19,22 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/acne"
+            android:layout_marginTop="58dp"
+            android:textAllCaps="true"
             android:text="@string/app_name"
             android:textColor="#11642A"
-            android:textSize="28sp" />
+            android:textSize="40sp" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_centerVertical="true"
             android:src="@drawable/baseline_menu_24" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="5dp"
+
             android:src="@drawable/dashboard_add" />
 
     </RelativeLayout>
@@ -104,10 +105,10 @@
                         android:elevation="8dp">
 
                         <ImageView
-                            android:id="@+id/imgbtn2"
+                            android:id="@+id/imgbtn6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/crop" />
+                            android:src="@drawable/crop3" />
 
 
                     </RelativeLayout>
@@ -184,7 +185,86 @@
 
                 </LinearLayout>
 
+
+
+
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+
+                    <RelativeLayout
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="10dp"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/imgbtn5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="63dp"
+                        android:gravity="center_horizontal"
+                        android:text="weather"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+
+                        android:layout_margin="10dp"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/imgbtn2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="63dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/location"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -192,21 +272,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@color/white">
 
-                <LinearLayout
 
-                    android:id="@+id/featured_background"
-                    android:layout_width="170dp"
-                    android:layout_height="300dp"
-                    android:background="@drawable/image2"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="280dp"
-                    android:layout_height="300dp"
-                    android:layout_toRightOf="@+id/featured_background"
-                    android:background="@color/black" />
 
             </RelativeLayout>
 
@@ -216,32 +282,7 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/acne"
-                        android:text="Most Viewed"
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:text="View All"
-                        android:textColor="@color/black" />
-
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp" />
 
 
             </LinearLayout>
@@ -260,7 +301,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/acne"
-                        android:text="Categories"
+                        android:text="Most viewed"
                         android:textAllCaps="true"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
