@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Disease Detected"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No disease was detected in the captured image."
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_below="@id/dialog_title"/>
+
+    <Button
+        android:id="@+id/got_it_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Got it"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/dialog_message"
+        android:layout_marginTop="16dp"/>
+
+</RelativeLayout>

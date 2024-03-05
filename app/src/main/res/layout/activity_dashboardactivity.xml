@@ -105,7 +105,7 @@
                         android:elevation="8dp">
 
                         <ImageView
-                            android:id="@+id/imgbtn6"
+                            android:id="@+id/imgbtn2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/crop3" />
@@ -241,7 +241,7 @@
                         android:elevation="8dp">
 
                         <ImageView
-                            android:id="@+id/imgbtn2"
+                            android:id="@+id/imgbtn6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
