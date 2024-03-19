@@ -29,6 +29,13 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:hint="Add a comment..." />
+    <TextView
+        android:id="@+id/textViewComments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:padding="8dp"/>
 
     <Button
         android:id="@+id/buttonSubmitComment"

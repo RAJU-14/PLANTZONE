@@ -1,35 +1,60 @@
-// TensorFlowLiteModelLoader.java
-
 package com.example.plantzone;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import org.tensorflow.lite.Interpreter;
-import java.io.FileInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TensorFlowLiteModelLoader {
 
-    private Context context;
+    private final Context context;
 
     public TensorFlowLiteModelLoader(Context context) {
         this.context = context;
     }
 
     public Interpreter loadModel(String modelFilename) throws IOException {
-        MappedByteBuffer tfliteModel = loadModelFile(modelFilename);
+        ByteBuffer tfliteModel = loadModelFile(modelFilename);
         Interpreter.Options options = new Interpreter.Options();
         return new Interpreter(tfliteModel, options);
     }
 
-    private MappedByteBuffer loadModelFile(String modelFilename) throws IOException {
-        AssetFileDescriptor fileDescriptor = context.getAssets().openFd(modelFilename);
-        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
-        FileChannel fileChannel = inputStream.getChannel();
-        long startOffset = fileDescriptor.getStartOffset();
-        long declaredLength = fileDescriptor.getDeclaredLength();
-        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+    public List<String> loadLabelList(String labelFilename) throws IOException {
+        List<String> labelList = new ArrayList<>();
+        AssetManager assetManager = context.getAssets();
+        InputStream inputStream = assetManager.open(labelFilename);
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                labelList.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return labelList;
+    }
+
+    private ByteBuffer loadModelFile(String modelFilename) throws IOException {
+        AssetManager assetManager = context.getAssets();
+        InputStream inputStream = assetManager.open(modelFilename);
+        int modelFileSize = inputStream.available();
+        ByteBuffer buffer = ByteBuffer.allocateDirect(modelFileSize);
+        try (ReadableByteChannel channel = Channels.newChannel(inputStream)) {
+            while (channel.read(buffer) > 0) {
+                // Do nothing, read data into buffer
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        buffer.flip();
+        return buffer;
     }
 }

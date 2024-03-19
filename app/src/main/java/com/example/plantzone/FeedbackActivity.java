@@ -1,7 +1,6 @@
 package com.example.plantzone;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,36 +10,46 @@ import android.text.TextUtils;
 
 public class FeedbackActivity extends AppCompatActivity {
 
-    EditText e1, e2;
-    Button b2; // Corrected: Added b2 for the submit button
-    DBHelper DB;
+    EditText nameEditText, feedbackEditText, emailEditText;
+    Button submitButton;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
-        e1 = findViewById(R.id.userEditText);
-        e2 = findViewById(R.id.feedbackEditText);
+        // Initialize Views
+        nameEditText = findViewById(R.id.userEditText);
+        feedbackEditText = findViewById(R.id.feedbackEditText);
+        emailEditText = findViewById(R.id.emailEditText);
+        submitButton = findViewById(R.id.button2);
 
-        // Corrected: Changed from b2 to b1
-        b2 = findViewById(R.id.button2); // Added b2 for the submit button
-        DB = new DBHelper(this);
+        // Initialize DBHelper
+        dbHelper = new DBHelper(this);
 
-        b2.setOnClickListener(new View.OnClickListener() {
+        // Set OnClickListener for the submit button
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                String name = e1.getText().toString();
-                String feedback = e2.getText().toString();
+                // Get user input from EditText fields
+                String name = nameEditText.getText().toString();
+                String feedback = feedbackEditText.getText().toString();
+                String email = emailEditText.getText().toString();
 
-                if (TextUtils.isEmpty(name) || TextUtils.isEmpty(feedback)) {
+                // Check if any field is empty
+                if (TextUtils.isEmpty(name) || TextUtils.isEmpty(feedback) || TextUtils.isEmpty(email)) {
                     Toast.makeText(FeedbackActivity.this, "All Fields Required", Toast.LENGTH_LONG).show();
                 } else {
-                    Boolean insert = DB.feedData(name, feedback);
-                    if (insert) {
+                    // Insert feedback into the database
+                    boolean feedbackInserted = dbHelper.feedData(name, feedback,email);
+
+                    if (feedbackInserted) {
                         Toast.makeText(FeedbackActivity.this, "Feedback Submitted Successfully", Toast.LENGTH_LONG).show();
-                        // Optionally, you can clear the EditText fields after successful submission
-                        e1.setText("");
-                        e2.setText("");
+                        // Clear EditText fields after successful submission
+                        nameEditText.setText("");
+                        feedbackEditText.setText("");
+                        emailEditText.setText("");
                     } else {
                         Toast.makeText(FeedbackActivity.this, "Failed to Submit Feedback", Toast.LENGTH_LONG).show();
                     }
@@ -49,4 +58,3 @@ public class FeedbackActivity extends AppCompatActivity {
         });
     }
 }
-

@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Cropdetection">
 
-
   <LinearLayout
       android:id="@+id/rel1"
       android:layout_width="160dp"
@@ -17,15 +16,15 @@
       android:layout_alignParentBottom="true"
       android:elevation="2dp">
 
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Take_Action"
-      android:textSize="17sp"
-      android:layout_marginTop="8dp"
-      android:fontFamily="@font/google1"
-      android:textColor="@color/white"
-      android:layout_marginStart="16dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take_Action"
+        android:textSize="17sp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/google1"
+        android:textColor="@color/white"
+        android:layout_marginStart="16dp"/>
 
     <LinearLayout
         android:layout_marginBottom="8dp"
@@ -43,6 +42,15 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/gallery_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload from Gallery"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="openGallery" />
+
   </LinearLayout>
   <LinearLayout
       android:id="@+id/cardView"
@@ -54,82 +62,81 @@
       android:gravity="center"
       android:background="@drawable/login_white_background"/>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/scan_leaf" />
+  <ImageView
+      android:id="@+id/imageView"
+      android:layout_width="match_parent"
+      android:layout_height="270dp"
+      android:scaleType="fitCenter"
+      android:src="@drawable/scan_leaf" />
 
-    <RelativeLayout
-        android:layout_below="@id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+  <RelativeLayout
+      android:layout_below="@id/cardView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
 
-      <LinearLayout
-          android:orientation="vertical"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <TextView
+          android:id="@+id/demoText"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content">
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:layout_marginEnd="16dp"
+          android:visibility="gone"
+          android:fontFamily="@font/google1"
+          android:lineSpacingMultiplier="0.9"
+          android:text="detect_txt_2"
+          android:textColor="@color/white"
+          android:textSize="14sp"
+          android:justificationMode="inter_word"
+          tools:targetApi="o" />
 
-        <TextView
-            android:id="@+id/demoText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            android:fontFamily="@font/google1"
-            android:lineSpacingMultiplier="0.9"
-            android:text="detect_txt_2"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:justificationMode="inter_word"
-            tools:targetApi="o" />
+      <ImageView
+          android:id="@+id/demoArrow"
+          android:layout_width="170dp"
+          android:layout_height="180dp"
+          android:src="@drawable/arrow_below"
+          android:layout_marginStart="24dp"
+          android:layout_marginTop="24dp"
+          android:rotation="-20"
+          android:visibility="gone"
+          app:tint="@color/white" />
 
-        <ImageView
-            android:id="@+id/demoArrow"
-            android:layout_width="170dp"
-            android:layout_height="180dp"
-            android:src="@drawable/arrow_below"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:rotation="-20"
-            android:visibility="gone"
-            app:tint="@color/white" />
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="YOUR_CROP_IS"
+          android:textSize="19sp"
+          android:textColor="@color/black"
+          android:id="@+id/classified"
+          android:fontFamily="@font/google1"
+          android:includeFontPadding="false"
+          android:layout_marginTop="24dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginEnd="16dp"
+          android:textAlignment="center"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="YOUR_CROP_IS"
-            android:textSize="19sp"
-            android:textColor="@color/black"
-            android:id="@+id/classified"
-            android:fontFamily="@font/google1"
-            android:includeFontPadding="false"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:textAlignment="center"/>
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text=""
+          android:textColor="#FFE500"
+          android:textSize="24sp"
+          android:id="@+id/result"
+          android:textAlignment="center"
+          android:textAllCaps="true"
+          android:fontFamily="@font/google1"
+          android:includeFontPadding="false"
+          android:letterSpacing="0.06"
+          android:layout_marginStart="16dp"
+          android:layout_marginEnd="16dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="#FFE500"
-            android:textSize="24sp"
-            android:id="@+id/result"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:fontFamily="@font/google1"
-            android:includeFontPadding="false"
-            android:letterSpacing="0.06"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
+    </LinearLayout>
 
-  </LinearLayout>
-
-    </RelativeLayout>
-
+  </RelativeLayout>
 
 </RelativeLayout>
