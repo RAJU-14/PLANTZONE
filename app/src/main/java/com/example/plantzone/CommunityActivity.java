@@ -1,7 +1,6 @@
 package com.example.plantzone;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -30,12 +29,22 @@ public class CommunityActivity extends AppCompatActivity {
     private PostAdapter postAdapter;
     private ArrayList<Post> posts;
 
+    private String email;
+    private String description;
+    private Uri imageUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community);
 
+        // Find views
         Button buttonSelectImage = findViewById(R.id.buttonSelectImage);
+        EditText editTextDescription = findViewById(R.id.editTextDescription);
+        EditText emailEditText = findViewById(R.id.email);
+        email = emailEditText.getText().toString(); // Retrieve email string value from EditText
+
+        // Set click listener for buttonSelectImage to navigate to Cropdetection activity
         buttonSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,8 +61,9 @@ public class CommunityActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewPosts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Initialize and set the adapter
-        postAdapter = new PostAdapter(this, posts);
+        // Initialize and set the adapter with the email string value
+        postAdapter = new PostAdapter(this, posts, email);
+
         recyclerView.setAdapter(postAdapter);
 
         // Check and request permission if not granted
@@ -63,27 +73,30 @@ public class CommunityActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                     REQUEST_CODE_STORAGE_PERMISSION);
         } else {
+            // Permission granted, open gallery
             openGallery();
         }
 
-        EditText editTextDescription = findViewById(R.id.editTextDescription);
-
+        // Set click listener for upload button
         Button buttonUploadFromGallery = findViewById(R.id.buttonUploadFromGallery);
         buttonUploadFromGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String description = editTextDescription.getText().toString();
+                description = editTextDescription.getText().toString();
+                email = emailEditText.getText().toString();
+
                 if (!description.isEmpty()) {
+                    // Proceed with gallery selection if description is not empty
                     openGallery();
                 } else {
+                    // Show toast if description is empty
                     Toast.makeText(CommunityActivity.this, "Please enter a description", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
     }
 
+    // Open gallery to select image
     private void openGallery() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST);
@@ -93,44 +106,50 @@ public class CommunityActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri imageUri = data.getData();
-            addPostToDatabase(imageUri);
+            // Image selected from gallery
+            imageUri = data.getData();
+            addPostToDatabase();
         }
     }
 
-    private void addPostToDatabase(Uri imageUri) {
-        EditText editTextDescription = findViewById(R.id.editTextDescription);
-        if (editTextDescription != null) {
-            String description = editTextDescription.getText().toString();
+    // Add post to database
+    private void addPostToDatabase() {
+        if (description.isEmpty()) {
+            // Show toast if description is empty
+            Toast.makeText(this, "Please enter a description", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            if (description.isEmpty()) {
-                Toast.makeText(this, "Please enter a description", Toast.LENGTH_SHORT).show();
-                return;
-            }
+        if (imageUri == null) {
+            // Show toast if image is not selected
+            Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            // Create an instance of DBHelper
-            DBHelper dbHelper = new DBHelper(this);
+        // Create an instance of DBHelper
+        DBHelper dbHelper = new DBHelper(this);
 
-            // Insert the post into the database using the dbHelper instance
-            boolean isSuccess = dbHelper.addPost(description, imageUri.toString(), ""); // Provide a dummy value for comments
-            if (isSuccess) {
-                Toast.makeText(this, "Post added successfully", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Error adding post", Toast.LENGTH_SHORT).show();
-            }
+        // Insert the post into the database using the dbHelper instance
+        boolean isSuccess = dbHelper.addPost(description, imageUri.toString(), email);
+        if (isSuccess) {
+            // Show success message
+            Toast.makeText(this, "Post added successfully", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Description field is null", Toast.LENGTH_SHORT).show();
+            // Show error message
+            Toast.makeText(this, "Error adding post", Toast.LENGTH_SHORT).show();
         }
     }
 
-
+    // Handle permission request result
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_STORAGE_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, open gallery
                 openGallery();
             } else {
+                // Permission denied, show toast
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
             }
         }

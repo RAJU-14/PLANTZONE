@@ -70,8 +70,8 @@ public class Cropdetection extends AppCompatActivity {
 
         modelLoader = new TensorFlowLiteModelLoader(this);
         try {
-            String modelFilename ="grape_disease_model.tflite";
-            String labelFilename = "labels.txt";
+            String modelFilename = "plants_model.tflite";
+            String labelFilename = "label_mappings.txt";
             Interpreter interpreter = modelLoader.loadModel(modelFilename);
             labels = modelLoader.loadLabelList(labelFilename);
 
@@ -128,93 +128,52 @@ public class Cropdetection extends AppCompatActivity {
     }
 
     private void processAndPredictImage(Bitmap capturedImage) {
+        // Assuming you retrieve the email here, replace "userEmail" with the actual email
+        String userEmail = dbHelper.getUserEmail(this);
+
         List<Classifier.Recognition> recognitionList = classifier.recognizeImage(capturedImage);
 
-        if (!recognitionList.isEmpty()) {
-            Classifier.Recognition recognitionResult = recognitionList.get(0);
-            showAlertDialogForDisease(recognitionResult.getTitle());
-            storeImageInDatabase(capturedImage, recognitionResult.getTitle());
-        } else {
-            showDefaultAlertDialog();
-        }
-    }
+        // Perform prediction here based on the recognitionList
+        String predictionResult = performPrediction(recognitionList);
 
-
-    private void storeImageInDatabase(Bitmap capturedImage, String predictionResult) {
-        // Convert Bitmap to byte array
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        capturedImage.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        byte[] imageBytes = byteArrayOutputStream.toByteArray();
-
-        // Insert image into the database
-        long rowId = dbHelper.insertImage(imageBytes, predictionResult);
+        long rowId = dbHelper.storeImageInDatabase(capturedImage, predictionResult, userEmail);
         if (rowId != -1) {
             Log.d("Cropdetection", "Image stored in database with ID: " + rowId);
         } else {
             Log.e("Cropdetection", "Failed to store image in database.");
         }
+
+        showAlertDialogForDisease(predictionResult);
+    }
+
+    private String performPrediction(List<Classifier.Recognition> recognitionList) {
+        // Placeholder variables to store the label with the highest confidence and its corresponding score
+        String highestConfidenceLabel = null;
+        float highestConfidenceScore = -1.0f;
+
+        // Loop through each recognition object in the recognitionList
+        for (Classifier.Recognition recognition : recognitionList) {
+            // Check if the confidence score of the current recognition is higher than the previous highest score
+            if (recognition.getConfidence() > highestConfidenceScore) {
+                // Update the highestConfidenceLabel and highestConfidenceScore with the current recognition
+                highestConfidenceLabel = recognition.getTitle();
+                highestConfidenceScore = recognition.getConfidence();
+            }
+        }
+
+        // Return the label with the highest confidence score as the prediction result
+        return highestConfidenceLabel;
     }
 
     private void showAlertDialogForDisease(String label) {
-        // Debugging: Print the value of label
-        System.out.println("Label value: " + label);
-
-        int layoutResId;
-        switch (label) {
-            case "Black Rot":
-                layoutResId = R.layout.grape_black_rot;
-                break;
-            case "Leaf Blight":
-                layoutResId = R.layout.grape_blight;
-                break;
-            case "ESCA":
-                layoutResId = R.layout.grape_esca_black_measles;
-                break;
-            case "Healthy": // Handle case for "Healthy"
-                layoutResId = R.layout.grape_healthy;
-                break;
-            default:
-                layoutResId = R.layout.default_dialog;
-                break;
-        }
-
-        // Inflate the view from the layout resource
-        View view = View.inflate(this, layoutResId, null);
-
-        // Create AlertDialog
+        // Use a switch-case statement to handle different labels and show different dialogs
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(view);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        // Set transparent background
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
-        // Set onClickListener for "Got It" button
-        view.findViewById(R.id.got_it_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        builder.setTitle("Prediction Result");
+        builder.setMessage("The predicted disease is: " + label);
+        builder.setPositiveButton("OK", null);
+        builder.show();
     }
 
-    private void showDefaultAlertDialog() {
-        View view = View.inflate(this, R.layout.default_dialog, null);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setView(view);
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
-        view.findViewById(R.id.got_it_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

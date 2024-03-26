@@ -1,0 +1,10 @@
+Label Mappings for classes present in the training and validation datasets
+
+0 : Grape___Black_rot
+1 : Grape___Esca_(Black_Measles)
+2 : Grape___Leaf_blight_(Isariopsis_Leaf_Spot)
+3 : Grape___healthy
+4 : Tomato___Bacterial_spot
+5 : Tomato___Early_blight
+6 : Tomato___Late_blight
+7 : Tomato___healthy

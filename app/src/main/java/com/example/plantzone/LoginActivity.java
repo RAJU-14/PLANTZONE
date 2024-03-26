@@ -31,10 +31,10 @@ public class LoginActivity extends AppCompatActivity {
                 String user = e1.getText().toString();
                 String pass = e2.getText().toString();
 
-                if (TextUtils.isEmpty(user) || TextUtils.isEmpty(pass))
+                if (TextUtils.isEmpty(user) || TextUtils.isEmpty(pass)) {
                     Toast.makeText(LoginActivity.this, "All Fields Required", Toast.LENGTH_LONG).show();
-                else {
-                    Boolean checkuserpass = DB.checkuserpassword(user, pass);
+                } else {
+                    boolean checkuserpass = DB.checkuserpassword(user, pass);
                     if (checkuserpass) {
                         Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getApplicationContext(), Dashboardactivity.class);
