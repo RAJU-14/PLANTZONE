@@ -112,14 +112,24 @@ public class Cropdetection extends AppCompatActivity {
                 Bitmap photo = (Bitmap) data.getExtras().get("data");
                 Log.d("ImageInfo", "Image captured from camera: " + photo.getWidth() + "x" + photo.getHeight());
                 imageView.setImageBitmap(photo);
-                processAndPredictImage(photo);
+
+                // Get the userId from your user data
+                long userId = getUserIDFromUserData();
+
+                // Call processAndPredictImage with the userId
+                processAndPredictImage(photo, userId);
             } else if (requestCode == GALLERY_REQUEST) {
                 Uri selectedImageUri = data.getData();
                 try {
                     Bitmap photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                     Log.d("ImageInfo", "Image selected from gallery: " + photo.getWidth() + "x" + photo.getHeight());
                     imageView.setImageBitmap(photo);
-                    processAndPredictImage(photo);
+
+                    // Get the userId from your user data
+                    long userId = getUserIDFromUserData();
+
+                    // Call processAndPredictImage with the userId
+                    processAndPredictImage(photo, userId);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -127,16 +137,20 @@ public class Cropdetection extends AppCompatActivity {
         }
     }
 
-    private void processAndPredictImage(Bitmap capturedImage) {
-        // Assuming you retrieve the email here, replace "userEmail" with the actual email
-        String userEmail = dbHelper.getUserEmail(this);
+    private long getUserIDFromUserData() {
+        // Implement logic to retrieve user ID from your user data
+        // For example, if you have a user session, you can retrieve it from there
+        // Replace this with your actual implementation
+        return 123; // Dummy user ID, replace with your logic to get the user ID
+    }
 
+    private void processAndPredictImage(Bitmap capturedImage, long userId) {
         List<Classifier.Recognition> recognitionList = classifier.recognizeImage(capturedImage);
 
         // Perform prediction here based on the recognitionList
         String predictionResult = performPrediction(recognitionList);
 
-        long rowId = dbHelper.storeImageInDatabase(capturedImage, predictionResult, userEmail);
+        long rowId = dbHelper.storeImageInDatabase(capturedImage, predictionResult, userId);
         if (rowId != -1) {
             Log.d("Cropdetection", "Image stored in database with ID: " + rowId);
         } else {
@@ -174,7 +188,6 @@ public class Cropdetection extends AppCompatActivity {
         builder.show();
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -187,3 +200,4 @@ public class Cropdetection extends AppCompatActivity {
         }
     }
 }
+

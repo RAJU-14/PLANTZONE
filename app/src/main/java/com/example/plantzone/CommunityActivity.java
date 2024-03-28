@@ -1,7 +1,9 @@
 package com.example.plantzone;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -126,11 +128,20 @@ public class CommunityActivity extends AppCompatActivity {
             return;
         }
 
+        // Get the user ID from the users table in the database
+        long userId = getUserIdFromDatabase();
+
+        if (userId == -1) {
+            // Show error message if user ID is not available
+            Toast.makeText(this, "Error adding post: User ID not found", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Create an instance of DBHelper
         DBHelper dbHelper = new DBHelper(this);
 
         // Insert the post into the database using the dbHelper instance
-        boolean isSuccess = dbHelper.addPost(description, imageUri.toString(), email);
+        boolean isSuccess = dbHelper.addPost(description, imageUri.toString(), userId);
         if (isSuccess) {
             // Show success message
             Toast.makeText(this, "Post added successfully", Toast.LENGTH_SHORT).show();
@@ -139,6 +150,27 @@ public class CommunityActivity extends AppCompatActivity {
             Toast.makeText(this, "Error adding post", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+    private long getUserIdFromDatabase() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String userEmail = sharedPreferences.getString("email", null);
+
+        // Check if the email is not null
+        if (userEmail != null) {
+            // Retrieve the user ID associated with the email from the database
+            DBHelper dbHelper = new DBHelper(this);
+            return dbHelper.getUserIdByEmail(userEmail);
+        } else {
+            // Show error message if email is null
+            Toast.makeText(this, "Error getting user ID: Email is null", Toast.LENGTH_SHORT).show();
+            return -1;
+        }
+    }
+
+
+
+
 
     // Handle permission request result
     @Override

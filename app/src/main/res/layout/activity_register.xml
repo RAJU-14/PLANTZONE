@@ -42,6 +42,15 @@
                 android:text="SignUp To Start Your New Journey"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+            <Spinner
+                android:id="@+id/spinnerUserType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:entries="@array/user_types" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

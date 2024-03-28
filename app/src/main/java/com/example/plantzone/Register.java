@@ -1,40 +1,58 @@
 package com.example.plantzone;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.SharedPreferences;
 
 public class Register extends AppCompatActivity {
 
     EditText etUsername, etPassword, etConfirmPassword, etEmail, etPhone, etDob;
+    Spinner spinnerUserType; // Declare Spinner
     Button btnRegister, btnLogin;
     DBHelper dbHelper;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        dbHelper = new DBHelper(this);
-        etPhone = findViewById(R.id.phone); // Add this line to initialize the phone EditText
-        etDob = findViewById(R.id.dob); // Add this line to initialize the dob EditText
+        // Initialize EditText fields
         etUsername = findViewById(R.id.user);
         etPassword = findViewById(R.id.password);
         etConfirmPassword = findViewById(R.id.pass);
         etEmail = findViewById(R.id.email);
+        etPhone = findViewById(R.id.phone);
+        etDob = findViewById(R.id.dob);
 
+        // Initialize DBHelper
+        dbHelper = new DBHelper(this);
+
+        // Initialize Spinner
+        spinnerUserType = findViewById(R.id.spinnerUserType);
+
+        // Define array containing options
+        String[] options = new String[]{"Faculty", "Student"};
+
+        // Create ArrayAdapter and set it to the Spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerUserType.setAdapter(adapter);
+
+        // Initialize buttons
         btnRegister = findViewById(R.id.button1);
         btnLogin = findViewById(R.id.button2);
 
+        // Register button click listener
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +60,7 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        // Login button click listener
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,14 +85,18 @@ public class Register extends AppCompatActivity {
     }
 
     private void register() {
+        // Retrieve input values
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
         String confirmPassword = etConfirmPassword.getText().toString();
         String email = etEmail.getText().toString();
-        String phone = etPhone.getText().toString(); // Retrieve phone number
-        String dob = etDob.getText().toString(); // Retrieve date of birth
+        String phone = etPhone.getText().toString();
+        String dob = etDob.getText().toString();
+        String userType = spinnerUserType.getSelectedItem().toString(); // Retrieve selected user type from Spinner
 
-        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword) || TextUtils.isEmpty(email) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(dob)) {
+        // Validation
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)
+                || TextUtils.isEmpty(email) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(dob)) {
             Toast.makeText(Register.this, "All Fields Required", Toast.LENGTH_LONG).show();
             return;
         }
@@ -83,18 +106,20 @@ public class Register extends AppCompatActivity {
             return;
         }
 
-        boolean isInserted = dbHelper.insertData(email, username, password, phone, dob);
+        // Insert data into database
+        boolean isInserted = dbHelper.insertData(username, password, phone, dob, userType,email);
+
         if (isInserted) {
             Toast.makeText(Register.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+            // Clear input fields
             etUsername.setText("");
             etPassword.setText("");
             etConfirmPassword.setText("");
             etEmail.setText("");
-            etPhone.setText(""); // Clear phone number field after successful registration
-            etDob.setText(""); // Clear date of birth field after successful registration
-            // Inside the register() method after successful registration
+            etPhone.setText("");
+            etDob.setText("");
+            // Save email to SharedPreferences
             saveEmailToSharedPreferences(email);
-
         } else {
             Toast.makeText(Register.this, "Registration Failed", Toast.LENGTH_LONG).show();
         }
